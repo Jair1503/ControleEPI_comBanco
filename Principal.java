@@ -23,7 +23,7 @@ public class Principal {
             System.out.println("7. Atualizar EPI");
             System.out.println("8. Excluir EPI");
 
-            System.out.println ("\n===== CONTROLE DE EMPRESTIMENTO =====");
+            System.out.println ("\n===== CONTROLE DE EMPRÉSTIMO =====");
             System.out.println("9. Registrar empréstimo");
             System.out.println("10. Listar empréstimos");
             System.out.println("11. Atualizar empréstimo");
@@ -123,9 +123,9 @@ public class Principal {
                     int idUsuarioEmp = Integer.parseInt(scanner.nextLine());
                     System.out.print("ID do EPI: ");
                     int idEpiEmp = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Data de retirada (YYYY-MM-DD HH:MM:SS): ");
+                    System.out.print("Data de retirada (YYYY/MM/DD HH:MM:SS): ");
                     String dataRetirada = scanner.nextLine();
-                    System.out.print("Data prevista de devolução (YYYY-MM-DD HH:MM:SS): ");
+                    System.out.print("Data prevista de devolução (YYYY/MM/DD HH:MM:SS): ");
                     String dataPrevista = scanner.nextLine();
                     System.out.print("Confirmação de retirada (1 para sim, 0 para não): ");
                     int confirmacaoInt = Integer.parseInt(scanner.nextLine());
