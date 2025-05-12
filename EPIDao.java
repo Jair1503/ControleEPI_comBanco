@@ -54,19 +54,31 @@ public class EPIDao {
     }
 
     public void excluirEPI(int id) {
-        String sql = "DELETE FROM epi WHERE id_epi = ?";
+        String verificarSql = "SELECT COUNT(*) FROM emprestimo WHERE id_epi = ?";
+        String excluirSql = "DELETE FROM epi WHERE id_epi = ?";
         try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            int linhasAfetadas = stmt.executeUpdate();
-            if (linhasAfetadas > 0) {
-                System.out.println("EPI excluído com sucesso!");
-            } else {
-                System.out.println("EPI não encontrado para exclusão.");
+             PreparedStatement verificarstmt = conn.prepareStatement(verificarSql)) {
+
+            verificarstmt.setInt(1, id);
+            ResultSet rs = verificarstmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.err.println("Erro ao excluir: Epi vinculado ao empréstimo");
+                return;
+            }
+            try (PreparedStatement excluirstmt = conn.prepareStatement(excluirSql)) {
+                excluirstmt.setInt(1, id);
+                int rows = excluirstmt.executeUpdate();
+                if (rows > 0) {
+                    System.err.println("EPI excuído com sucesso");
+                } else {
+                    System.err.println("EPI não encontrado");
+                }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir EPI: " + e.getMessage());
+            System.err.println("Erro ao excluir EPI: ");
         }
     }
 }
+
+
 

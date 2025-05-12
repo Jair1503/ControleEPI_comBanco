@@ -54,19 +54,33 @@ public class DevolucaoDao {
     }
 
     public void excluirDevolucao(int id) {
-        String sql = "DELETE FROM devolucao WHERE id_devolucao = ?";
+        String verificarSql = "SELECT COUNT(*) FROM emprestimo WHERE id_devolucao = ?";
+        String excluirSql = "DELETE FROM devolucao WHERE id_devolucao = ?";
         try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            int linhasAfetadas = stmt.executeUpdate();
-            if (linhasAfetadas > 0) {
-                System.out.println("Devolução excluída com sucesso!");
-            } else {
-                System.out.println("Devolução não encontrada.");
+             PreparedStatement verificarStmt = conn.prepareStatement(verificarSql)) {
+
+            verificarStmt.setInt(1, id);
+            ResultSet rs = verificarStmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("Erro ao excluir: Devolução vinculado ao empréstimo");
+                return;
             }
+                try (PreparedStatement excluirStmt = conn.prepareStatement(excluirSql)) {
+                    excluirStmt.setInt(1, id);
+                    int rows = excluirStmt.executeUpdate();
+                    if (rows > 0) {
+                        System.out.println("Devolução excluída com sucesso");
+                    } else {
+                        System.out.println("Devolução não encontrada");
+                    }
+                }
+
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir devolução: " + e.getMessage());
+            System.out.println("Erro ao excluir devolução: ");
         }
     }
 }
+
+
+
 

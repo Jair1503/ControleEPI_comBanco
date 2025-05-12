@@ -86,21 +86,33 @@ public class UsuarioDao {
         }
     }
 
-    public void excluirUsuario(int id) {
-        String sql = "DELETE FROM usuario WHERE id_usuario = ?";
-        try (Connection conn = Conexao.conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
-            int rows = stmt.executeUpdate();
-            if (rows > 0) {
-                System.out.println("Usuário excluído com sucesso!");
-            } else {
-                System.out.println("Usuário não encontrado.");
+
+    public void excluirUsuario(int Id) {
+        String verificarSql = "SELECT COUNT(*) FROM emprestimo WHERE id_usuario = ?";
+        String excluirsql = "DELETE FROM usuario WHERE id_usuario = ?";
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement verificarStmt = conn.prepareStatement(verificarSql)) {
+
+            verificarStmt.setInt(1, Id);
+            ResultSet rs = verificarStmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("Erro ao excluir: Existe empréstimo vinculado ao usuário");
+                return;
             }
-        } catch (SQLException e) {
-            System.out.println("Erro ao excluir usuário: " + e.getMessage());
-        }
+            try (PreparedStatement excluirStmt = conn.prepareStatement(excluirsql)) {
+                excluirStmt.setInt(1, Id);
+                int rows = excluirStmt.executeUpdate();
+                if (rows > 0) {
+                    System.out.println("Usuário excluído com sucesso");
+                } else {
+                    System.out.println("Usuário não encontrado");
+                }
+            }
+
+        }catch (SQLException e) {
+            System.out.println("Erro ao excluir usuário: Id usuario não existe");
+       }
     }
 }
 

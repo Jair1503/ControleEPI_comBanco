@@ -23,7 +23,7 @@ public class Principal {
             System.out.println("7. Atualizar EPI");
             System.out.println("8. Excluir EPI");
 
-            System.out.println ("\n===== CONTROLE DE EMPRESTIMENTO =====");
+            System.out.println ("\n===== CONTROLE DE EMPRÉSTIMO =====");
             System.out.println("9. Registrar empréstimo");
             System.out.println("10. Listar empréstimos");
             System.out.println("11. Atualizar empréstimo");
@@ -123,9 +123,9 @@ public class Principal {
                     int idUsuarioEmp = Integer.parseInt(scanner.nextLine());
                     System.out.print("ID do EPI: ");
                     int idEpiEmp = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Data de retirada (YYYY-MM-DD HH:MM:SS): ");
+                    System.out.print("Data de retirada (YYYY/MM/DD HH:MM:SS): ");
                     String dataRetirada = scanner.nextLine();
-                    System.out.print("Data prevista de devolução (YYYY-MM-DD HH:MM:SS): ");
+                    System.out.print("Data prevista de devolução (YYYY/MM/DD HH:MM:SS): ");
                     String dataPrevista = scanner.nextLine();
                     System.out.print("Confirmação de retirada (1 para sim, 0 para não): ");
                     int confirmacaoInt = Integer.parseInt(scanner.nextLine());
@@ -150,9 +150,9 @@ public class Principal {
                     int novoIdUsuario = Integer.parseInt(scanner.nextLine());
                     System.out.print("Novo ID do EPI: ");
                     int novoIdEpi = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nova data de retirada (YYYY-MM-DD HH:MM:SS): ");
+                    System.out.print("Nova data de retirada (YYYY/MM/DD HH:MM:SS): ");
                     String novaDataRetirada = scanner.nextLine();
-                    System.out.print("Nova data prevista de devolução (YYYY-MM-DD HH:MM:SS): ");
+                    System.out.print("Nova data prevista de devolução (YYYY/MM/DD HH:MM:SS): ");
                     String novaDataPrevista = scanner.nextLine();
                     System.out.print("Nova confirmação de retirada (1 ou 0): ");
                     int novaConfirmacaoInt = Integer.parseInt(scanner.nextLine());
@@ -190,7 +190,7 @@ public class Principal {
                     int idDev = Integer.parseInt(scanner.nextLine());
                     System.out.print("Novo ID do empréstimo: ");
                     int novoIdEmpDev = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nova data da devolução (AAAA-MM-DD): ");
+                    System.out.print("Nova data da devolução (AAAA/MM/DD): ");
                     String novaDataDev = scanner.nextLine();
                     Devolucao devAtualizada = new Devolucao(idDev, novoIdEmpDev, novaDataDev);
                     devolucaoDao.atualizarDevolucao(devAtualizada);
