@@ -170,7 +170,7 @@ public class Principal {
                 case 13:
                     System.out.print("ID do empréstimo: ");
                     int idEmpDev = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Data da devolução (AAAA-MM-DD): ");
+                    System.out.print("Data da devolução (AAAA/MM/DD): ");
                     String dataDevolucao = scanner.nextLine();
                     Devolucao dev = new Devolucao(idEmpDev, dataDevolucao);
                     devolucaoDao.inserirDevolucao(dev);

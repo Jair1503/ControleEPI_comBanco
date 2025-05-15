@@ -71,7 +71,7 @@ public class DevolucaoDao {
                     if (rows > 0) {
                         System.out.println("Devolução excluída com sucesso");
                     } else {
-                        System.out.println("Devolução não encontrada");
+                        System.out.println("Devolução não pode ser excluída");
                     }
                 }
 

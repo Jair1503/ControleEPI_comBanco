@@ -14,7 +14,7 @@ public class EmprestimoDao {
             stmt.executeUpdate();
             System.out.println("Empréstimo registrado com sucesso!");
         } catch (SQLException e) {
-            System.out.println("Erro ao inserir empréstimo: " + e.getMessage());
+            System.out.println("Erro ao inserir empréstimo: ");
         }
     }
 
@@ -36,7 +36,7 @@ public class EmprestimoDao {
                 lista.add(emp);
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao listar empréstimos: " + e.getMessage());
+            System.out.println("Erro ao listar empréstimos: ");
         }
         return lista;
     }
@@ -58,7 +58,7 @@ public class EmprestimoDao {
                 System.out.println("Empréstimo não encontrado.");
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao atualizar empréstimo: " + e.getMessage());
+            System.out.println("Erro ao atualizar empréstimo: ");
         }
     }
 
@@ -84,7 +84,7 @@ public class EmprestimoDao {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro ao excluir empréstimo: ");
+            System.out.println("Erro ao excluir empréstimo: Não há empréstimo a ser excluído ");
         }
     }
 }
